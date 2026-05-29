@@ -5,6 +5,28 @@ description: Answer any strategic question by looping through your personal boar
 
 # Ask Board
 
+```
+  /ask-board [question]
+        │
+        ▼
+  load knowledge/board/*.md
+        │
+        ├──→ [Adviser 1] — answers in their voice + frameworks
+        ├──→ [Adviser 2] — answers in their voice + frameworks
+        └──→ [Adviser N] — answers in their voice + frameworks
+                │
+                ▼
+          ## Synthesis
+          where they agree · where they diverge
+          what the divergence reveals
+                │
+                ▼
+          ## One action
+          grounded in your profile + constraints
+```
+
+> The synthesis step is where this gets useful. When two advisers with different worldviews agree — that's signal. When they diverge — that's the assumption you need to pressure-test.
+
 Loop through your personal board of advisers, answer as each one, synthesize, and recommend.
 
 ## Step 1 — Load context

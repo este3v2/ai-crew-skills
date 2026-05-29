@@ -5,6 +5,32 @@ description: Fetch a URL, extract structured insights, and save to the right kno
 
 # Ingest Resource
 
+```
+  /ingest-resource [URL]
+        │
+        ▼
+  detect content type
+  ┌──────────┬──────────┬──────────┬──────────┐
+  │ YouTube  │ article  │ Substack │  tool /  │
+  │  video   │  / blog  │   post   │  product │
+  └────┬─────┴────┬─────┴────┬─────┴────┬─────┘
+       └──────────┴──────────┘          │
+                  │                     │
+                  ▼                     ▼
+          extract structure          extract
+          core idea · frameworks     positioning
+          quotes · drill candidate   use cases · pricing
+                  │
+                  ▼
+          route to knowledge/
+          ┌──────────────┬─────────────┬──────────────────┐
+          │   general/   │    board/   │  new-drills/     │
+          │  [slug].md   │ [name].md   │  candidates.md   │
+          └──────────────┴─────────────┴──────────────────┘
+```
+
+> Verbatim quotes only — no paraphrase. One file per source, always. If there's no useful insight, say so rather than padding.
+
 Fetch a URL, extract what matters, save it to the knowledge base.
 
 ## Step 1 — Identify content type

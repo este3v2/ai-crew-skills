@@ -5,6 +5,32 @@ description: End-of-session debrief that captures what worked and what didn't, t
 
 # Improve System
 
+```
+  /improve-system
+        │
+        ▼
+  5 debrief questions
+  (what worked · what didn't · what Claude got wrong)
+        │
+        ▼
+  classify each answer
+  ┌─────────────────┬──────────────┬──────────────┬───────────┐
+  │ profile update  │ skill update │ CLAUDE.md    │ no action │
+  └────────┬────────┴──────┬───────┴──────┬───────┴───────────┘
+           │               │              │
+           ▼               ▼              ▼
+    knowledge/       skills/*.md      CLAUDE.md
+    profile.md
+           │               │              │
+           └───────────────┴──────────────┘
+                           │
+                           ▼
+                  knowledge/improve-log.md
+                  (append session entry)
+```
+
+> Run this after every session that produced significant output. The system compounds — each session makes the next one faster.
+
 Capture session feedback and update the operator OS so it compounds over time.
 
 ## Step 1 — Debrief

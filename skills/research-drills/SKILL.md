@@ -5,6 +5,41 @@ description: Search the web for new experiment and drill candidates, score them 
 
 # Research Drills
 
+```
+  /research-drills
+        │
+        ▼
+  read knowledge/ context
+  (profile · skills-inventory · existing candidates)
+        │
+        ▼
+  check installed skills FIRST ←── best drills often already exist
+        │
+        ├── skill fits criteria? ──→ surface as candidate (no build needed)
+        │
+        ▼
+  5 web searches
+  (general · AI operators · Reddit · X · Substack)
+        │
+        ▼
+  score each candidate  0──────────────────────10
+                        │  buildable in 1 session  │ 0-2
+                        │  free + paid packagable  │ 0-2
+                        │  useful to YOU today     │ 0-3
+                        │  standalone Substack post│ 0-3
+        │
+        ▼
+  ★ flag top pick with reasoning
+        │
+        ▼
+  append to knowledge/new-drills/candidates.md
+        │
+        ▼
+  ask for approval → never auto-move to approved/
+```
+
+> The rule: check `knowledge/skills-inventory.md` before going to the web. Several 10/10 drills already exist as installed skills and just need packaging.
+
 Find and score new experiment candidates. Check what's already installed before searching the web.
 
 ## Step 1 — Load context

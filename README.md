@@ -1,6 +1,6 @@
 # AI Crew Skills
 
-Claude Code skills for operators. Built and maintained by [AI Crew](https://aicrew.com).
+Claude Code skills for operators. Built by [AI Crew](https://aicrew.com) — packaged from real client sessions, not hypothetical workflows.
 
 ## Install
 
@@ -9,24 +9,129 @@ claude plugins marketplace add este3v2/ai-crew-skills
 claude plugins install ai-crew-skills@este3v2
 ```
 
-Restart Claude Code. Skills will appear in your list and auto-trigger based on their descriptions.
+Restart Claude Code. Skills auto-trigger from their descriptions, or invoke directly (e.g. `/prompt-rewriter`).
+
+---
+
+## How the skills fit together
+
+```
+  FEED IN                   SKILLS                        KNOWLEDGE BASE
+  ───────                   ──────                        ──────────────
+
+  article / video
+  podcast / page   ──────→  /ingest-resource  ──────────→  knowledge/
+  adviser content           fetch · extract                general/
+                            save to right folder           board/
+                                                           new-drills/
+                                                                │
+                                          ┌─────────────────────┘
+                                          │
+              ┌───────────────────────────┼──────────────────┐
+              │                           │                  │
+              ▼                           ▼                  ▼
+       /ask-board               /research-drills      /improve-system
+       load profiles            check installed       5q debrief
+       answer as each           skills first          update knowledge/
+       adviser                  then search web       update skills/
+       synthesize               score · flag          log session
+              │                           │                  ▲
+              ▼                           ▼                  │
+       [decision clarity]      [next drill candidate]        │
+                                          │                  │
+                                          └──→  BUILD  ──────┘
+                                               session
+
+  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+
+  STANDALONE — works anywhere, no knowledge/ needed
+
+  [any bloated prompt]
+          │
+          ▼
+  /prompt-rewriter
+  classify → strip scaffolding → rewrite to 4-component format
+          │
+          ▼
+  [clean prompt + before/after diff + risk items]
+```
+
+---
 
 ## Skills
 
-| Skill | Trigger | What it does |
-|---|---|---|
-| `/prompt-rewriter` | paste any prompt | Strips compensating complexity — procedural scaffolding, role-play preambles, duct-tape instructions. Rewrites to clean 4-component format. Shows before/after diff + risk items. |
-| `/ask-board` | any strategic question | Loops through your board of adviser profiles, answers as each one, synthesizes where they agree/diverge, ends with one recommendation. Requires `knowledge/board/` profiles. |
-| `/improve-system` | end of session | 5-question debrief. Classifies feedback, updates knowledge files and skills. Logs the session. |
-| `/ingest-resource [URL]` | any URL | Fetches content, extracts core idea + frameworks + quotes, saves to the right `knowledge/` folder. Flags drill candidates. |
-| `/research-drills` | when you want new ideas | Checks installed skills first, then searches web. Scores candidates against operator profile. Flags top pick. Never auto-approves. |
+### `/prompt-rewriter`
+Strips compensating complexity from any system prompt. Classifies every line (outcome / constraint / scaffolding / duct-tape), rewrites to a clean 4-section format, shows before/after diff and risk items.
 
-## Requirements
+**Standalone — no project structure required.**
 
-`/ask-board`, `/improve-system`, `/ingest-resource`, and `/research-drills` expect a `knowledge/` folder in your project. They work within the [Experiment Drill 26](https://github.com/este3v2/experiment-drill-26) operator OS structure but adapt to any project with a `knowledge/profile.md`.
+```
+/prompt-rewriter
 
-`/prompt-rewriter` works standalone — no project structure required.
+[paste your prompt]
+```
+
+---
+
+### `/ask-board`
+Answers any strategic question by looping through your board of adviser profiles. Each adviser responds in their own voice using their frameworks. Synthesizes where they agree and diverge. Ends with one recommended action.
+
+**Requires `knowledge/board/` profiles.** Build them with `/ingest-resource`.
+
+```
+/ask-board Should I prioritize growing the audience or converting existing leads this quarter?
+```
+
+---
+
+### `/ingest-resource [URL]`
+Fetches any URL, extracts core idea + frameworks + quotes, saves to the right `knowledge/` folder. Flags drill candidates automatically.
+
+```
+/ingest-resource https://example.com/article
+```
+
+---
+
+### `/research-drills`
+Finds new experiment candidates. Checks your installed skills inventory first (best drills are often already installed and just need packaging), then searches the web. Scores each candidate. Flags the top pick. Never auto-approves.
+
+```
+/research-drills
+/research-drills --feed "my own idea to score"
+```
+
+---
+
+### `/improve-system`
+End-of-session debrief. Asks 5 structured questions, classifies what to update, edits the right files, logs the session. Run this after any session that produced significant output.
+
+```
+/improve-system
+```
+
+---
+
+## Project structure expected
+
+`/ask-board`, `/improve-system`, `/ingest-resource`, and `/research-drills` work within a project that has:
+
+```
+knowledge/
+  profile.md          ← who the operator is, goals, constraints
+  board/              ← adviser profiles (built via /ingest-resource)
+  general/            ← ingested articles and resources
+  new-drills/
+    candidates.md     ← staged drill ideas
+    approved/         ← approved, ready to plan
+skills/               ← skill files (updated by /improve-system)
+CLAUDE.md             ← project brain file
+```
+
+`/prompt-rewriter` works standalone with no structure required.
+
+---
 
 ## Part of Experiment Drill 26
 
-These skills are documented as free + paid operator tools in the [Experiment Drill 26 Substack series](https://substack.com).
+These skills are documented as free + paid operator tools in the [Experiment Drill 26 Substack series](https://substack.com). Each skill has a free prompt version and a paid implementation guide for client delivery.

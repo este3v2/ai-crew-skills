@@ -5,7 +5,32 @@ description: Rewrite any system prompt by stripping compensating complexity — 
 
 # Prompt Rewriter
 
-Strips compensating complexity from system prompts and rewrites to a clean outcome-based format.
+```
+  [bloated prompt]
+        │
+        ▼
+  classify every line
+  ┌─────────────┬──────────────┬─────────────┬──────────┐
+  │  OUTCOME ✓  │ CONSTRAINT ✓ │ SCAFFOLDING │ DUCT-TAPE│
+  └─────────────┴──────────────┴─────────────┴──────────┘
+        │               │             │             │
+       keep            keep         delete        delete
+        │               │
+        └───────┬────────┘
+                ▼
+      4-component rewrite
+      ┌──────────────────────────┐
+      │ ## Outcome               │
+      │ ## Constraints           │
+      │ ## Tools                 │
+      │ ## Coordination          │
+      └──────────────────────────┘
+                │
+                ▼
+      before/after diff + risk items
+```
+
+> Built from real client sessions. The most common finding: the bloat isn't the problem — it's hiding an empty prompt. Use the risk items section to catch this before deploying.
 
 ## What is compensating complexity?
 
